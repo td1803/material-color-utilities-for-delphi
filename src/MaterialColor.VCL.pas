@@ -19,7 +19,11 @@ implementation
 
 function ARGB(Color: TColor): TARGB;
 begin
-  Result := $ff000000 or TAlphaColor(Color);
+  // Convert TColor (0x00BBGGRR) to TAlphaColor (0xAARRGGBB) with full opacity
+  Result := TAlphaColor($FF000000) or
+            (TAlphaColor(GetRValue(Color)) shl 16) or
+            (TAlphaColor(GetGValue(Color)) shl 8) or
+            TAlphaColor(GetBValue(Color));
 end;
 
 function PictureToRankedColors(const Picture: TPicture): TArray<TColor>;
