@@ -7,7 +7,18 @@ uses
   MaterialColor.DynamicColor.DynamicScheme;
 
 type
+  /// <summary>
+  /// A calm theme, sedated colors that aren't particularly chromatic.
+  /// </summary>
   TSchemeTonalSpot = class(TDynamicSchemeBuilder)
+  public
+    /// <summary>
+    /// Constructs a dynamic color scheme.
+    /// </summary>
+    /// <param name="set_source_color_hct">The source color in HCT color space.</param>
+    /// <param name="set_is_dark">Indicates if the scheme is for dark mode.</param>
+    /// <param name="set_contrast_level">The level of contrast adjustment. Default is 0.0.</param>
+    /// <returns>A dynamically constructed color scheme.</returns>
     class function Construct(set_source_color_hct: THCT; set_is_dark: Boolean; set_contrast_level: Double = 0.0): TDynamicScheme; override;
   end;
 
@@ -20,8 +31,14 @@ uses
 
 { TSchemeTonalSpot }
 
-class function TSchemeTonalSpot.Construct(set_source_color_hct: THCT;
-  set_is_dark: Boolean; set_contrast_level: Double): TDynamicScheme;
+/// <summary>
+/// Constructs a dynamic color scheme.
+/// </summary>
+/// <param name="set_source_color_hct">The source color in HCT color space.</param>
+/// <param name="set_is_dark">Indicates if the scheme is for dark mode.</param>
+/// <param name="set_contrast_level">The level of contrast adjustment. Default is 0.0.</param>
+/// <returns>A dynamically constructed color scheme.</returns>
+class function TSchemeTonalSpot.Construct(set_source_color_hct: THCT; set_is_dark: Boolean; set_contrast_level: Double): TDynamicScheme;
 begin
   Result := TDynamicScheme.Create(
     (* source_color_argb: *) set_source_color_hct.ToInt(),
@@ -43,3 +60,4 @@ begin
 end;
 
 end.
+
